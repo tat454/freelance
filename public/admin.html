@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理後台</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,.8);
+        }
+        .sidebar .nav-link:hover {
+            color: white;
+        }
+        .sidebar .nav-link.active {
+            background-color: rgba(255,255,255,.1);
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .stat-card {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 側邊欄 -->
+            <div class="col-md-3 col-lg-2 sidebar p-3">
+                <h4 class="mb-4">管理後台</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-home me-2"></i>儀表板
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-users me-2"></i>用戶管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cog me-2"></i>系統設置
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-chart-bar me-2"></i>數據統計
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-file-alt me-2"></i>內容管理
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 主要內容區 -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>儀表板</h2>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-2"></i>管理員
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">個人資料</a></li>
+                            <li><a class="dropdown-item" href="#">登出</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 統計卡片 -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">總用戶數</h5>
+                                <h2 class="card-text">1,234</h2>
+                                <p class="card-text"><small>較上月增長 12%</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-success text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">活躍用戶</h5>
+                                <h2 class="card-text">856</h2>
+                                <p class="card-text"><small>較上月增長 8%</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-warning text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">訂單數量</h5>
+                                <h2 class="card-text">432</h2>
+                                <p class="card-text"><small>較上月增長 15%</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card stat-card bg-info text-white">
+                            <div class="card-body">
+                                <h5 class="card-title">總收入</h5>
+                                <h2 class="card-text">$12,345</h2>
+                                <p class="card-text"><small>較上月增長 20%</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最近活動 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">最近活動</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>時間</th>
+                                        <th>用戶</th>
+                                        <th>活動</th>
+                                        <th>狀態</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2024-03-20 10:30</td>
+                                        <td>張三</td>
+                                        <td>購買服務</td>
+                                        <td><span class="badge bg-success">完成</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-03-20 09:15</td>
+                                        <td>李四</td>
+                                        <td>註冊帳號</td>
+                                        <td><span class="badge bg-success">完成</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-03-19 16:45</td>
+                                        <td>王五</td>
+                                        <td>更新資料</td>
+                                        <td><span class="badge bg-warning">處理中</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- API 整合 -->
+    <script>
+        // API 基礎URL
+        const API_BASE_URL = 'https://job-admin.170taxi.workers.dev';
+
+        // 獲取統計數據
+        async function fetchStats() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/stats`);
+                const stats = await response.json();
+                
+                // 更新統計卡片
+                document.querySelector('.bg-primary .card-text').textContent = stats.totalUsers;
+                document.querySelector('.bg-success .card-text').textContent = stats.activeUsers;
+                document.querySelector('.bg-warning .card-text').textContent = stats.orders;
+                document.querySelector('.bg-info .card-text').textContent = `$${stats.revenue}`;
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+            }
+        }
+
+        // 獲取最近活動
+        async function fetchActivities() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/activities`);
+                const activities = await response.json();
+                
+                // 更新活動表格
+                const tbody = document.querySelector('tbody');
+                tbody.innerHTML = activities.map(activity => `
+                    <tr>
+                        <td>${activity.time}</td>
+                        <td>${activity.user}</td>
+                        <td>${activity.action}</td>
+                        <td><span class="badge bg-${activity.status === 'completed' ? 'success' : 'warning'}">${activity.status === 'completed' ? '完成' : '處理中'}</span></td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching activities:', error);
+            }
+        }
+
+        // 頁面加載完成後獲取數據
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchStats();
+            fetchActivities();
+            
+            // 每60秒更新一次數據
+            setInterval(() => {
+                fetchStats();
+                fetchActivities();
+            }, 60000);
+        });
+    </script>
+</body>
+</html> 
