@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職位詳情 - 兼職平台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            padding-top: 60px;
+        }
+        
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .detail-card {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+        }
+        
+        .apply-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">兼職平台</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs.html">找兼職</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">關於我們</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/login.html" class="btn btn-outline-primary me-2">登入</a>
+                    <a href="/register.html" class="btn btn-primary">註冊</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要內容 -->
+    <div class="container mt-4">
+        <!-- 返回按鈕 -->
+        <div class="mb-3">
+            <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> 返回職位列表
+            </a>
+        </div>
+        
+        <!-- 職位詳細信息 -->
+        <div class="job-detail" id="jobDetailContainer">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">加載中...</span>
+                </div>
+                <p class="mt-2">正在加載職位信息...</p>
+            </div>
+        </div>
+        
+        <!-- 應聘表單 -->
+        <div class="row mt-5" id="applyFormContainer" style="display: none;">
+            <div class="col-md-8 offset-md-2">
+                <div class="card detail-card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">申請此職位</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="applyForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">姓名</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">電話</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">電子郵件</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">自我介紹 (可選)</label>
+                                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="agreeTerm" required>
+                                <label class="form-check-label" for="agreeTerm">
+                                    我同意兼職平台的<a href="#" target="_blank">服務條款</a>和<a href="#" target="_blank">隱私政策</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">提交申請</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 申請成功提示 -->
+        <div class="row mt-5" id="applySuccessContainer" style="display: none;">
+            <div class="col-md-8 offset-md-2">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">申請成功!</h4>
+                    <p>您的申請已成功提交。我們將盡快與您聯繫。</p>
+                    <hr>
+                    <p class="mb-0">您可以繼續瀏覽其他職位或回到<a href="/" class="alert-link">首頁</a>。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁腳 -->
+    <footer class="py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>兼職平台</h5>
+                    <p>幫助求職者找到理想的兼職工作</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-white">首頁</a></li>
+                        <li><a href="/jobs.html" class="text-white">找兼職</a></li>
+                        <li><a href="/about.html" class="text-white">關於我們</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>聯繫我們</h5>
+                    <p>service@170taxi.com</p>
+                </div>
+            </div>
+            <hr class="my-3 bg-light">
+            <div class="text-center">
+                <p class="mb-0">兼職平台 &copy; <span id="currentYear"></span> - 版權所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 設置當前年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // API 基礎 URL
+        const API_BASE_URL = 'https://service-platform-api.170taxi.workers.dev';
+        
+        // 獲取 URL 參數中的職位 ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = urlParams.get('id');
+        
+        // 檢查是否有職位 ID
+        if (!jobId) {
+            document.getElementById('jobDetailContainer').innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">找不到職位</h4>
+                    <p>未指定職位 ID，請返回<a href="/jobs.html" class="alert-link">職位列表</a>重新選擇。</p>
+                </div>
+            `;
+        } else {
+            // 獲取職位詳情
+            fetchJobDetail(jobId);
+        }
+
+        // 獲取職位詳情
+        async function fetchJobDetail(id) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/jobs/${id}`);
+                
+                if (!response.ok) {
+                    throw new Error('獲取職位詳情失敗');
+                }
+                
+                const job = await response.json();
+                
+                // 顯示職位詳情
+                displayJobDetail(job);
+                
+                // 顯示應聘表單
+                document.getElementById('applyFormContainer').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('jobDetailContainer').innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">無法加載職位</h4>
+                        <p>獲取職位詳情時出錯，請稍後再試或返回<a href="/jobs.html" class="alert-link">職位列表</a>。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 顯示職位詳情
+        function displayJobDetail(job) {
+            // 更新頁面標題
+            document.title = `${job.title} - 兼職平台`;
+            
+            // 模擬一些未提供的數據
+            const requirements = job.requirements ? job.requirements.split(',') : [
+                '良好的溝通能力',
+                '責任心強，有團隊合作精神',
+                '能夠獨立完成工作任務',
+                '有相關工作經驗優先'
+            ];
+            
+            const benefits = job.benefits ? job.benefits.split(',') : [
+                '具有競爭力的薪資',
+                '靈活的工作時間',
+                '提供在職培訓',
+                '良好的工作環境'
+            ];
+            
+            // 格式化日期
+            const formatDate = (dateString) => {
+                if (!dateString) return '不限';
+                const date = new Date(dateString);
+                return date.toLocaleDateString('zh-TW');
+            };
+            
+            // 生成 HTML
+            const html = `
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card detail-card mb-4">
+                            <div class="card-body">
+                                <h2 class="card-title">${job.title}</h2>
+                                <div class="d-flex flex-wrap gap-3 mb-3">
+                                    <span class="badge bg-success">${job.type}</span>
+                                    ${job.createdAt ? `<span class="text-muted small">發布於: ${formatDate(job.createdAt)}</span>` : ''}
+                                </div>
+                                
+                                <div class="d-flex flex-wrap gap-4 mb-4">
+                                    <div>
+                                        <i class="bi bi-geo-alt text-primary"></i>
+                                        <span>${job.location || '未指定地點'}</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-cash text-primary"></i>
+                                        <span>$${job.salary}/小時</span>
+                                    </div>
+                                    <div>
+                                        <i class="bi bi-calendar text-primary"></i>
+                                        <span>截止日期: ${formatDate(job.deadline)}</span>
+                                    </div>
+                                </div>
+                                
+                                <h5 class="mb-3">工作描述</h5>
+                                <p>${job.description || '暫無工作描述'}</p>
+                                
+                                <h5 class="mt-4 mb-3">任職要求</h5>
+                                <ul>
+                                    ${requirements.map(req => `<li>${req}</li>`).join('')}
+                                </ul>
+                                
+                                <h5 class="mt-4 mb-3">工作福利</h5>
+                                <ul>
+                                    ${benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card detail-card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">申請此職位</h5>
+                                <p>填寫下方表單立即申請，或點擊按鈕了解更多信息。</p>
+                                <button class="btn btn-primary w-100 mt-3" id="applyNowBtn">
+                                    立即申請
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="card detail-card">
+                            <div class="card-body">
+                                <h5 class="card-title">聯繫信息</h5>
+                                ${job.company ? `<p><i class="bi bi-building me-2"></i>${job.company}</p>` : ''}
+                                ${job.contactPerson ? `<p><i class="bi bi-person me-2"></i>${job.contactPerson}</p>` : ''}
+                                ${job.contactPhone ? `<p><i class="bi bi-telephone me-2"></i>${job.contactPhone}</p>` : ''}
+                                ${job.contactEmail ? `<p><i class="bi bi-envelope me-2"></i>${job.contactEmail}</p>` : ''}
+                                ${!job.contactPerson && !job.contactPhone && !job.contactEmail ? 
+                                    '<p>請通過申請按鈕提交申請</p>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('jobDetailContainer').innerHTML = html;
+            
+            // 申請按鈕點擊事件
+            document.getElementById('applyNowBtn').addEventListener('click', () => {
+                document.getElementById('applyFormContainer').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // 申請表單提交
+        document.getElementById('applyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // 表單數據
+            const formData = {
+                jobId: parseInt(jobId),
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                // 模擬 API 調用
+                // 實際情況下，應使用類似以下代碼：
+                // const response = await fetch(`${API_BASE_URL}/api/applications`, {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify(formData),
+                // });
+                
+                // 模擬處理延遲
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // 隱藏表單，顯示成功信息
+                document.getElementById('applyFormContainer').style.display = 'none';
+                document.getElementById('applySuccessContainer').style.display = 'block';
+                
+                // 滾動到成功信息
+                document.getElementById('applySuccessContainer').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('提交申請時發生錯誤，請稍後再試。');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input class="search-input" 
+           placeholder="搜索職位、地點或關鍵字" 
+           bindinput="onSearchInput"
+           value="{{keyword}}"
+    />
+    <button class="btn-primary" bindtap="onSearch">搜索</button>
+  </view>
+
+  <!-- 篩選條件 -->
+  <view class="filter-bar">
+    <view class="filter-item {{activeFilter === 'all' ? 'active' : ''}}" 
+          bindtap="onFilterTap" 
+          data-type="all">全部</view>
+    <view class="filter-item {{activeFilter === 'fulltime' ? 'active' : ''}}" 
+          bindtap="onFilterTap" 
+          data-type="fulltime">全職</view>
+    <view class="filter-item {{activeFilter === 'parttime' ? 'active' : ''}}" 
+          bindtap="onFilterTap" 
+          data-type="parttime">兼職</view>
+    <view class="filter-item {{activeFilter === 'intern' ? 'active' : ''}}" 
+          bindtap="onFilterTap" 
+          data-type="intern">實習</view>
+  </view>
+
+  <!-- 職位列表 -->
+  <view class="job-list">
+    <view class="card job-card" 
+          wx:for="{{jobs}}" 
+          wx:key="id" 
+          bindtap="goToJobDetail" 
+          data-id="{{item.id}}">
+      <view class="job-header">
+        <view class="job-title">{{item.title}}</view>
+        <view class="job-salary">{{item.salary}}</view>
+      </view>
+      <view class="job-info">
+        <view class="info-item">
+          <text class="text-secondary">{{item.company}}</text>
+        </view>
+        <view class="info-item">
+          <text class="text-secondary">{{item.location}}</text>
+        </view>
+      </view>
+      <view class="job-tags">
+        <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加載更多 -->
+  <view class="loading" wx:if="{{loading}}">加載中...</view>
+  <view class="no-more" wx:if="{{!hasMore && jobs.length > 0}}">沒有更多了</view>
+  <view class="empty" wx:if="{{!loading && jobs.length === 0}}">
+    <text>暫無相關職位</text>
+  </view>
+</view> 

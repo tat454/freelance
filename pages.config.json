@@ -1,0 +1,15 @@
+{
+  "name": "service-platform",
+  "build": {
+    "command": "npm run build",
+    "output": "public",
+    "environment": {
+      "NODE_VERSION": "16"
+    }
+  },
+  "routes": [
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/admin", "dest": "/admin.html" },
+    { "src": "/api/*", "dest": "/api/:splat" }
+  ]
+} 

@@ -3,93 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服務平台</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>兼職平台 - 找到最適合的兼職工作</title>
     <style>
-        .hero-section {
-            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
-            color: white;
-            padding: 100px 0;
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 導航欄 */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+        
+        /* 英雄區域 */
+        .hero {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        /* 特色區域 */
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
         .feature-card {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            text-align: center;
             transition: transform 0.3s;
         }
+        
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
-        .footer {
-            background-color: #f8f9fa;
-            padding: 40px 0;
+        
+        .feature-card h3 {
+            margin: 1rem 0;
+            color: var(--primary-color);
+        }
+        
+        /* 熱門職位 */
+        .jobs {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .job-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--light-gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* 頁腳 */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <!-- 導航欄 -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">服務平台</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">首頁</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">服務</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">關於我們</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">聯繫我們</a>
-                    </li>
-                </ul>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">兼職平台</div>
+            <div class="nav-links">
+                <a href="#jobs">找兼職</a>
+                <a href="#post">發佈職位</a>
+                <a href="#about">關於我們</a>
+                <a href="#contact">聯繫我們</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">登入</button>
+                <button class="btn btn-primary">註冊</button>
             </div>
         </div>
     </nav>
 
-    <!-- 主頁面內容 -->
-    <section class="hero-section text-center">
+    <!-- 英雄區域 -->
+    <section class="hero">
         <div class="container">
-            <h1 class="display-4 mb-4">歡迎來到我們的服務平台</h1>
-            <p class="lead mb-4">提供最優質的服務，滿足您的需求</p>
-            <button class="btn btn-light btn-lg">立即開始</button>
+            <h1>找到最適合的兼職工作</h1>
+            <p>連接雇主與求職者，讓兼職工作更簡單</p>
+            <div class="search-box">
+                <input type="text" placeholder="搜尋職位、地點或關鍵字...">
+                <button class="btn btn-primary">搜尋</button>
+            </div>
         </div>
     </section>
 
-    <!-- 服務特色 -->
-    <section class="py-5">
+    <!-- 特色區域 -->
+    <section class="features">
         <div class="container">
-            <h2 class="text-center mb-5">我們的服務特色</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card feature-card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-rocket fa-3x mb-3 text-primary"></i>
-                            <h3>快速服務</h3>
-                            <p>提供快速高效的服務，讓您省時省力</p>
-                        </div>
+            <h2 class="section-title">為什麼選擇我們</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>多元職位</h3>
+                    <p>提供各種類型的兼職工作機會，滿足不同需求</p>
+                </div>
+                <div class="feature-card">
+                    <h3>安全可靠</h3>
+                    <p>嚴格審核雇主資質，保障求職者權益</p>
+                </div>
+                <div class="feature-card">
+                    <h3>快速匹配</h3>
+                    <p>智能推薦系統，快速找到適合的職位</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 熱門職位 -->
+    <section class="jobs" id="jobs">
+        <div class="container">
+            <h2 class="section-title">熱門兼職職位</h2>
+            <div class="jobs-grid">
+                <div class="job-card">
+                    <h3>餐廳服務員</h3>
+                    <div class="job-meta">
+                        <span>時薪 $180-200</span>
+                        <span>台北市</span>
+                    </div>
+                    <p>負責餐廳內場服務，需具備基本溝通能力，有經驗者佳。</p>
+                    <div class="job-tags">
+                        <span class="tag">餐飲</span>
+                        <span class="tag">兼職</span>
+                        <span class="tag">台北</span>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card feature-card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
-                            <h3>安全可靠</h3>
-                            <p>確保您的數據安全和隱私保護</p>
-                        </div>
+                <div class="job-card">
+                    <h3>家教老師</h3>
+                    <div class="job-meta">
+                        <span>時薪 $400-600</span>
+                        <span>新北市</span>
+                    </div>
+                    <p>教授國中數學，需具備相關教學經驗，有耐心。</p>
+                    <div class="job-tags">
+                        <span class="tag">教育</span>
+                        <span class="tag">兼職</span>
+                        <span class="tag">新北</span>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card feature-card h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-headset fa-3x mb-3 text-primary"></i>
-                            <h3>專業支持</h3>
-                            <p>24/7專業技術支持團隊</p>
-                        </div>
+                <div class="job-card">
+                    <h3>活動企劃助理</h3>
+                    <div class="job-meta">
+                        <span>時薪 $200-250</span>
+                        <span>台中市</span>
+                    </div>
+                    <p>協助活動企劃與執行，需具備文書處理能力。</p>
+                    <div class="job-tags">
+                        <span class="tag">企劃</span>
+                        <span class="tag">兼職</span>
+                        <span class="tag">台中</span>
                     </div>
                 </div>
             </div>
@@ -97,68 +370,51 @@
     </section>
 
     <!-- 頁腳 -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>關於我們</h5>
-                    <p>我們致力於提供最好的服務，讓您的體驗更美好。</p>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>關於我們</h3>
+                    <ul>
+                        <li><a href="#">公司簡介</a></li>
+                        <li><a href="#">團隊介紹</a></li>
+                        <li><a href="#">服務條款</a></li>
+                        <li><a href="#">隱私政策</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5>聯繫方式</h5>
-                    <p>Email: contact@example.com</p>
-                    <p>電話: (02) 1234-5678</p>
+                <div class="footer-section">
+                    <h3>求職者</h3>
+                    <ul>
+                        <li><a href="#">找工作</a></li>
+                        <li><a href="#">建立履歷</a></li>
+                        <li><a href="#">求職指南</a></li>
+                        <li><a href="#">常見問題</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <h5>關注我們</h5>
+                <div class="footer-section">
+                    <h3>雇主</h3>
+                    <ul>
+                        <li><a href="#">發佈職位</a></li>
+                        <li><a href="#">人才搜尋</a></li>
+                        <li><a href="#">雇主指南</a></li>
+                        <li><a href="#">定價方案</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>聯繫我們</h3>
+                    <ul>
+                        <li>Email: contact@parttime.com</li>
+                        <li>電話: (02) 1234-5678</li>
+                        <li>地址: 台北市信義區信義路五段7號</li>
+                    </ul>
                     <div class="social-links">
-                        <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">Line</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- API 整合 -->
-    <script>
-        // API 基礎URL
-        const API_BASE_URL = 'https://job-admin.170taxi.workers.dev';
-
-        // 獲取服務列表
-        async function fetchServices() {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/services`);
-                const services = await response.json();
-                
-                // 更新服務卡片
-                const servicesContainer = document.querySelector('.row');
-                services.forEach(service => {
-                    const card = document.createElement('div');
-                    card.className = 'col-md-4 mb-4';
-                    card.innerHTML = `
-                        <div class="card feature-card h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-${service.id === 1 ? 'rocket' : service.id === 2 ? 'shield-alt' : 'headset'} fa-3x mb-3 text-primary"></i>
-                                <h3>${service.name}</h3>
-                                <p>${service.description}</p>
-                            </div>
-                        </div>
-                    `;
-                    servicesContainer.appendChild(card);
-                });
-            } catch (error) {
-                console.error('Error fetching services:', error);
-            }
-        }
-
-        // 頁面加載完成後獲取數據
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchServices();
-        });
-    </script>
 </body>
 </html> 

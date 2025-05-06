@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找兼職 - 兼職平台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            padding-top: 60px;
+        }
+        
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .job-card {
+            transition: transform 0.3s;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">兼職平台</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/jobs.html">找兼職</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html">關於我們</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/login.html" class="btn btn-outline-primary me-2">登入</a>
+                    <a href="/register.html" class="btn btn-primary">註冊</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要內容 -->
+    <div class="container mt-4">
+        <h1 class="mb-4">找到最適合的兼職工作</h1>
+        
+        <!-- 搜尋和過濾 -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="搜尋職位、地點或關鍵字...">
+                    <button class="btn btn-primary" type="button" id="searchButton">搜尋</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select id="typeFilter" class="form-select">
+                    <option value="">所有工作類型</option>
+                    <option value="全職">全職</option>
+                    <option value="兼職">兼職</option>
+                    <option value="臨時">臨時</option>
+                    <option value="自由工作">自由工作</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- 職位列表 -->
+        <div class="row" id="jobsList">
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">加載中...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分頁 -->
+        <div class="d-flex justify-content-center mt-4">
+            <nav aria-label="職位分頁" id="pagination" style="display: none;">
+                <ul class="pagination">
+                    <li class="page-item" id="prevPage">
+                        <a class="page-link" href="#" aria-label="上一頁">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item" id="nextPage">
+                        <a class="page-link" href="#" aria-label="下一頁">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 頁腳 -->
+    <footer class="py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>兼職平台</h5>
+                    <p>幫助求職者找到理想的兼職工作</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-white">首頁</a></li>
+                        <li><a href="/jobs.html" class="text-white">找兼職</a></li>
+                        <li><a href="/about.html" class="text-white">關於我們</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>聯繫我們</h5>
+                    <p>service@170taxi.com</p>
+                </div>
+            </div>
+            <hr class="my-3 bg-light">
+            <div class="text-center">
+                <p class="mb-0">兼職平台 &copy; <span id="currentYear"></span> - 版權所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 設置當前年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // API 基礎 URL
+        const API_BASE_URL = 'https://service-platform-api.170taxi.workers.dev';
+        
+        // 分頁變數
+        let allJobs = [];
+        let filteredJobs = [];
+        let currentPage = 1;
+        const itemsPerPage = 9;
+        
+        // 獲取 URL 參數
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchParam = urlParams.get('search');
+        
+        // 如果 URL 中有搜尋參數，設置搜尋框的值
+        if (searchParam) {
+            document.getElementById('searchInput').value = searchParam;
+        }
+
+        // 獲取所有職位
+        async function fetchJobs() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/jobs`);
+                if (!response.ok) {
+                    throw new Error('獲取職位失敗');
+                }
+                
+                allJobs = await response.json();
+                
+                // 初始過濾
+                applyFilters();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('jobsList').innerHTML = `
+                    <div class="col-12 text-center">
+                        <p class="text-danger">無法加載職位數據，請稍後再試。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 應用過濾器並顯示結果
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const jobType = document.getElementById('typeFilter').value;
+            
+            // 過濾職位
+            filteredJobs = allJobs.filter(job => {
+                const matchesSearch = !searchTerm || 
+                    job.title.toLowerCase().includes(searchTerm) || 
+                    (job.description && job.description.toLowerCase().includes(searchTerm)) ||
+                    (job.location && job.location.toLowerCase().includes(searchTerm));
+                
+                const matchesType = !jobType || job.type === jobType;
+                
+                return matchesSearch && matchesType;
+            });
+            
+            // 重置分頁和顯示結果
+            currentPage = 1;
+            displayJobs();
+            updatePagination();
+        }
+
+        // 顯示當前頁面的職位
+        function displayJobs() {
+            const container = document.getElementById('jobsList');
+            
+            if (filteredJobs.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <p>暫無匹配的工作機會</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 計算當前頁面的職位
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, filteredJobs.length);
+            const currentJobs = filteredJobs.slice(startIndex, endIndex);
+            
+            let html = '';
+            currentJobs.forEach(job => {
+                html += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card job-card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${job.title}</h5>
+                                <p class="card-text text-muted">
+                                    <i class="bi bi-geo-alt"></i> ${job.location || '未指定'} | 
+                                    <i class="bi bi-cash"></i> $${job.salary}
+                                </p>
+                                <span class="badge bg-success">${job.type}</span>
+                                <p class="card-text mt-3">${job.description?.substring(0, 80) || ''}${job.description?.length > 80 ? '...' : ''}</p>
+                            </div>
+                            <div class="card-footer bg-white border-0">
+                                <a href="/job-detail.html?id=${job.id}" class="btn btn-outline-primary w-100">查看詳情</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // 更新分頁控件
+        function updatePagination() {
+            const paginationElement = document.getElementById('pagination');
+            const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
+            
+            if (totalPages <= 1) {
+                paginationElement.style.display = 'none';
+                return;
+            }
+            
+            paginationElement.style.display = 'block';
+            
+            // 更新頁碼指示器
+            let pagesHtml = '';
+            const prevLi = document.getElementById('prevPage');
+            const nextLi = document.getElementById('nextPage');
+            
+            // 更新前後頁按鈕狀態
+            if (currentPage === 1) {
+                prevLi.classList.add('disabled');
+            } else {
+                prevLi.classList.remove('disabled');
+            }
+            
+            if (currentPage === totalPages) {
+                nextLi.classList.add('disabled');
+            } else {
+                nextLi.classList.remove('disabled');
+            }
+            
+            // 生成頁碼
+            const pagesToShow = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+            let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+            
+            if (endPage - startPage + 1 < pagesToShow) {
+                startPage = Math.max(1, endPage - pagesToShow + 1);
+            }
+            
+            // 移除現有的頁碼
+            const pageLinks = paginationElement.querySelectorAll('li.page-num');
+            pageLinks.forEach(link => link.remove());
+            
+            // 添加新的頁碼
+            for (let i = startPage; i <= endPage; i++) {
+                const li = document.createElement('li');
+                li.className = `page-item page-num ${i === currentPage ? 'active' : ''}`;
+                li.innerHTML = `<a class="page-link" href="#" data-page="${i}">${i}</a>`;
+                paginationElement.querySelector('li:last-child').before(li);
+            }
+            
+            // 添加頁碼點擊事件
+            paginationElement.querySelectorAll('.page-num a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    currentPage = parseInt(e.target.dataset.page);
+                    displayJobs();
+                    updatePagination();
+                    window.scrollTo(0, 0);
+                });
+            });
+        }
+
+        // 搜尋按鈕點擊事件
+        document.getElementById('searchButton').addEventListener('click', () => {
+            applyFilters();
+        });
+
+        // 按 Enter 鍵搜尋
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                applyFilters();
+            }
+        });
+
+        // 工作類型過濾器變化事件
+        document.getElementById('typeFilter').addEventListener('change', () => {
+            applyFilters();
+        });
+
+        // 前一頁按鈕點擊事件
+        document.getElementById('prevPage').addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage > 1) {
+                currentPage--;
+                displayJobs();
+                updatePagination();
+                window.scrollTo(0, 0);
+            }
+        });
+
+        // 後一頁按鈕點擊事件
+        document.getElementById('nextPage').addEventListener('click', (e) => {
+            e.preventDefault();
+            const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayJobs();
+                updatePagination();
+                window.scrollTo(0, 0);
+            }
+        });
+
+        // 頁面加載時獲取職位
+        window.addEventListener('DOMContentLoaded', fetchJobs);
+    </script>
+</body>
+</html> 

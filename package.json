@@ -1,12 +1,17 @@
 {
-  "name": "service-platform",
+  "name": "service-platform-api",
   "version": "1.0.0",
-  "description": "服務平台網站",
+  "description": "兼職平台 API 服務",
+  "main": "src/index.js",
   "scripts": {
-    "start": "npx serve .",
-    "build": "echo 'No build step required'"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute service-platform-db --file=./src/db/schema.sql"
   },
   "dependencies": {
-    "serve": "^14.2.1"
+    "itty-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
   }
-} 
+}

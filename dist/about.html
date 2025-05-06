@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們 - 兼職平台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+        }
+        
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            padding-top: 60px;
+        }
+        
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .about-header {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 60px 0;
+        }
+        
+        .team-card {
+            transition: transform 0.3s;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mission-section {
+            background-color: #f8f9fa;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 導航欄 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">兼職平台</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs.html">找兼職</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about.html">關於我們</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/login.html" class="btn btn-outline-primary me-2">登入</a>
+                    <a href="/register.html" class="btn btn-primary">註冊</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 關於我們頁頭 -->
+    <header class="about-header text-center">
+        <div class="container">
+            <h1 class="display-4">關於我們</h1>
+            <p class="lead">連接雇主與求職者，讓兼職工作更簡單</p>
+        </div>
+    </header>
+
+    <!-- 我們的使命 -->
+    <section class="py-5 mission-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2>我們的使命</h2>
+                    <p class="lead">讓尋找兼職工作變得簡單、安全、高效</p>
+                    <p>兼職平台成立於2023年，我們致力於為求職者提供優質的兼職工作機會，同時為雇主提供高效的招聘渠道。我們的目標是創建一個透明、公平的兼職市場，讓每個人都能找到適合自己的工作。</p>
+                    <p>我們相信，靈活的工作方式是未來的趨勢，通過兼職平台，我們能夠幫助更多人實現工作與生活的平衡。</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="工作團隊" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心價值 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">我們的核心價值</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-shield-check text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h4>安全可靠</h4>
+                            <p>我們嚴格審核每個職位和雇主，確保平台上的工作機會真實可靠，保障求職者的權益。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-lightning-charge text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h4>高效便捷</h4>
+                            <p>通過智能匹配系統，我們幫助求職者快速找到合適的工作，同時為雇主節省招聘時間和成本。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <i class="bi bi-people text-primary mb-3" style="font-size: 2rem;"></i>
+                            <h4>用戶至上</h4>
+                            <p>我們始終以用戶需求為中心，不斷改進平台功能和服務，提供最佳的用戶體驗。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我們的團隊 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">我們的團隊</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card team-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="card-img-top" alt="團隊成員">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">張志明</h5>
+                            <p class="card-text text-muted">創始人 & CEO</p>
+                            <p class="card-text">擁有10年互聯網創業經驗，致力於解決就業市場的痛點。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card team-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="card-img-top" alt="團隊成員">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">林美玲</h5>
+                            <p class="card-text text-muted">產品經理</p>
+                            <p class="card-text">前Google產品經理，專注於用戶體驗與產品設計。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card team-card">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" class="card-img-top" alt="團隊成員">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">王建國</h5>
+                            <p class="card-text text-muted">技術總監</p>
+                            <p class="card-text">擁有豐富的開發經驗，負責平台的技術架構和安全。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯繫我們 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4">聯繫我們</h2>
+                    <p class="mb-4">如果您有任何問題、建議或合作意向，歡迎隨時與我們聯繫。</p>
+                    <div class="d-flex justify-content-center gap-4 mb-4">
+                        <div>
+                            <i class="bi bi-envelope text-primary me-2"></i>
+                            <span>service@170taxi.com</span>
+                        </div>
+                        <div>
+                            <i class="bi bi-telephone text-primary me-2"></i>
+                            <span>02-1234-5678</span>
+                        </div>
+                    </div>
+                    <p>辦公地址：台北市信義區信義路五段7號</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>兼職平台</h5>
+                    <p>幫助求職者找到理想的兼職工作</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>快速連結</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-white">首頁</a></li>
+                        <li><a href="/jobs.html" class="text-white">找兼職</a></li>
+                        <li><a href="/about.html" class="text-white">關於我們</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>聯繫我們</h5>
+                    <p>service@170taxi.com</p>
+                </div>
+            </div>
+            <hr class="my-3 bg-light">
+            <div class="text-center">
+                <p class="mb-0">兼職平台 &copy; <span id="currentYear"></span> - 版權所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 設置當前年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

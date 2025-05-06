@@ -1,0 +1,7 @@
+name = "wechat-verify"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "."
+
+[vars]
+VERIFICATION_CODE = "6a379ab2c88a8d3908491ab3aa038d74" 
